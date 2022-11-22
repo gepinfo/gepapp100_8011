@@ -203,7 +203,7 @@ services:
     image: systementry-8011
     container_name: systementry-8011
     ports: 
-      - 8014:8014
+      - 8010:8010
     env_file: .env
     depends_on:
       - mongo
@@ -219,7 +219,7 @@ services:
     image: homedata-8011
     container_name: homedata-8011
     ports: 
-      - 8015:8015
+      - 8011:8011
     env_file: .env
     depends_on:
       - mongo

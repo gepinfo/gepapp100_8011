@@ -177,4 +177,64 @@ export class ApiAdapter {
         }
     }
 
+}             reject({
+                    code: response.status,
+                    message: "not acceptable"
+                });
+            } else if (response.status === 407) {
+                reject({
+                    code: response.status,
+                    message: "proxy authentication required"
+                });
+            } else if (response.status === 408) {
+                reject({
+                    code: response.status,
+                    message: "request timeout"
+                });
+            } else if (response.status === 500) {
+                reject({
+                    code: response.status,
+                    message: "internal server error"
+                });
+            } else if (response.status === 501) {
+                reject({
+                    code: response.status,
+                    message: "request method is not supported by the server and cannot be handled"
+                });
+            } else if (response.status === 502) {
+                reject({
+                    code: response.status,
+                    message: "bad request"
+                });
+            } else if (response.status === 503) {
+                reject({
+                    code: response.status,
+                    message: "service available"
+                });
+            } else if (response.status === 504) {
+                reject({
+                    code: response.status,
+                    message: "gateway timeout"
+                });
+            } else if (response.status === 505) {
+                reject({
+                    code: response.status,
+                    message: "HTTP version used in the request is not supported by the server"
+                });
+            } else {
+                reject(error);
+            }
+        } else {
+            if (error.port !== undefined && response.port !== null) {
+
+                let errormsg = {
+                    error: "Microservice Down",
+                    service_port: error.port,
+                };
+                console.error(errormsg)
+                reject(errormsg);
+            }
+        }
+    }
+
 }
